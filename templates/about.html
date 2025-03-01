@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Language Detection Tool</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-100 flex flex-col items-center">
+  <nav class="flex bg-white shadow-md fixed w-full top-0 left-0">
+    <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+      <div class="flex flex-row gap-2">
+        <img src="{{url_for('static', filename='image.png')}}" alt="Not Found" class="w-9">
+        <a href="#" class="text-2xl font-bold text-blue-600">LangOP</a>
+      </div>
+        <div class="hidden md:flex space-x-6">
+            <a href="{{url_for('home')}}" class="text-gray-700 hover:text-blue-600">Home</a>
+            <a href="{{url_for('about') }}" class="text-gray-700 hover:text-blue-600">About</a>
+            <a href="#Features" class="text-gray-700 hover:text-blue-600">Features</a>
+            <a class="text-gray-700 hover:text-blue-600">Contact</a>
+        </div>
+        <button id="menu-btn" class="md:hidden text-gray-700 focus:outline-none">
+            ☰
+        </button>
+    </div>
+  </nav>
+
+  <section id="about" class="mt-32 max-w-3xl bg-white shadow-md rounded-lg p-6">
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">About Our Tool</h1>
+    <p class="text-gray-600 text-justify">
+      The Language Detection Tool is an AI-powered application that identifies the language of a given text.
+      It is designed to help users quickly determine the language of written content, making it useful for translators, students, and businesses working with multilingual data.
+    </p>
+
+    <h2 class="text-2xl font-semibold mt-6 text-gray-800">Key Features</h2>
+    <ul class="list-disc list-inside text-gray-700 mt-2">
+      <li>Supports multiple languages, including English, Spanish, French, German, Chinese, and more.</li>
+      <li>Instant and accurate language detection.</li>
+      <li>Speech-to-text integration for detecting spoken languages.</li>
+      <li>Simple and user-friendly interface.</li>
+    </ul>
+
+    <h2 class="text-2xl font-semibold mt-6 text-gray-800">Our Mission</h2>
+    <p class="text-gray-600 text-justify mt-2">
+      Our goal is to bridge communication gaps by providing an intuitive and efficient tool for detecting languages. Whether you're a student, researcher, or business professional, our platform aims to make language identification seamless and accessible.
+    </p>
+  </section>
+  <footer class="bottom-0 mt-16 w-full bg-gray-900 text-white py-6">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <h2 class="text-2xl font-bold">LangOP</h2>
+          <p class="text-gray-400 mt-2">Building the future, one step at a time.</p>
+        </div>
+  
+        <div>
+          <h3 class="text-lg font-semibold">Quick Links</h3>
+          <ul class="mt-2 space-y-2 text-gray-400">
+            <li><a href="#" class="hover:text-white">Home</a></li>
+            <li><a href="{{url_for('about') }}" class="hover:text-white">About</a></li>
+            <li><a href="#Features" class="hover:text-white">Features</a></li>
+            <li><a href="#" class="hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+  
+        <div>
+          <h3 class="text-lg font-semibold">Follow Us</h3>
+          <div class="mt-2 flex space-x-4">
+            <a href="#" class="hover:text-blue-400"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="hover:text-blue-300"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="hover:text-red-400"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:text-blue-600"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+  
+      <div class="border-t border-gray-700 my-4"></div>
+  
+      <div class="text-center text-gray-400">
+        <p>&copy; 2025 LangOP. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  
+
+</body>
+</html>

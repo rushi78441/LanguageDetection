@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Language Detection System</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
+</head>
+<style>
+  html{
+    scroll-behavior: smooth;
+  }
+</style>
+<body class="bg-gray-100">
+<div class="flex flex-col justify-center items-center font-sans overflow-hidden">
+  <nav class="flex bg-white shadow-md fixed w-full top-0 left-0">
+    <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+      <div class="flex flex-row gap-2">
+        <img src="{{url_for('static', filename='image.png')}}" alt="Not Found" class="w-9">
+        <a href="#" class="text-2xl font-bold text-blue-600">LangOP</a>
+      </div>
+        <div class="hidden md:flex space-x-6">
+            <a href="#" class="text-gray-700 hover:text-blue-600">Home</a>
+            <a href="{{url_for('about') }}" class="text-gray-700 hover:text-blue-600">About</a>
+            <a href="#Features" class="text-gray-700 hover:text-blue-600">Features</a>
+            <a class="text-gray-700 hover:text-blue-600">Contact</a>
+        </div>
+        <button id="menu-btn" class="md:hidden text-gray-700 focus:outline-none">
+            ☰
+        </button>
+    </div>
+  </nav>
+
+  <div class="flex flex-col z-10 justify-center items-center mt-36 w-full h-full"></div>
+    <div class=" flex flex-col justify-center max-w-3xl w-full bg-white shadow-md rounded-lg overflow-hidden">
+      <header class="flex flex-col justify-center items-center bg-blue-800 text-white text-center py-6">
+        <h1 class="text-3xl font-bold">Language Detection Tool</h1>
+        <p class="text-lg ">Enter text to identify the language</p>
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Not Found" class="w-24 mt-4">
+      </header>
+    <main class="p-6">
+      <form action="/predict" method="POST" class="flex flex-col gap-4">
+        <div>
+          <label for="text-input" class="block font-semibold mb-2">Text to analyze :</label>
+          <textarea name="text" id="text-input" class="w-full h-32 p-4 border rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Enter or paste your text here."></textarea>
+        </div>
+        
+        <div class="flex gap-4">
+          <button type="submit" class="bg-blue-700 hover:shadow-sm text-white px-6 py-2 rounded-lg hover:bg-blue-800 transition duration-300">Detect Language</button>
+          <button type="reset" class="border px-6 py-2 rounded-lg hover:shadow-sm text-gray-700 hover:bg-gray-200 transition duration-300">Clear</button>
+          <button id="speak-button" onclick="speakText()" class="border px-6 py-2 rounded-lg text-gray-700 hover:bg-gray-200 transition duration-300">
+            Convert to Speech
+        </button>
+        </div>
+        
+        <div class="mt-4 text-lg font-bold">Detected Language:</div>
+   
+        <div class="mt-2  h-8 flex items-center p-6 justify-center bg-gray-100 text-gray-700">
+          {{ language }}
+        </div>
+      </form>
+
+    </main>
+    </div>
+
+  <div id="Features" class="flex flex-col">
+  <div class="flex flex-row gap-4">
+    <div class="bg-white shadow-lg rounded-lg p-7 my-32 flex flex-col items-center text-center space-y-4">
+      <div class="bg-red-100 p-4 rounded-full">
+          <img src="{{ url_for('static', filename='Multi.png') }}" alt="Feature Icon" class="w-12 h-12">
+      </div>
+      <h3 class="text-xl font-semibold">Multi Language Support</h3>
+      <p class="text-gray-600 w-72 text-justify">Detects a wide range of languages, including English, Spanish, French, German, Hindi, Chinese, and many more.
+
+      </p>
+    </div>
+    <div class="bg-white shadow-lg rounded-lg p-7 my-32 flex flex-col items-center text-center space-y-4">
+      <div class="bg-red-100 p-4 rounded-full">
+          <img src="{{ url_for('static', filename='Detectionlogo.png') }}" alt="Feature Icon" class="w-12 h-12">
+      </div>
+      <h3 class="text-xl font-semibold">Fast & Accurate Detection</h3>
+      <p class="text-gray-600 w-72 text-justify">Uses advanced NLP (Natural Language Processing) models to provide quick and precise language identification.</p>
+    </div>
+    <div class="bg-white shadow-lg rounded-lg p-7 my-32 flex flex-col items-center text-center space-y-4">
+      <div class="bg-red-100 p-4 rounded-full">
+          <img src="{{ url_for('static', filename='Light.png') }}" alt="Feature Icon" class="w-12 h-12">
+      </div>
+      <h3 class="text-xl font-semibold">Lightweight & Efficient</h3>
+      <p class="text-gray-600 w-72 text-justify "> Optimized for speed and works efficiently even with long paragraphs of text.</p>
+    </div>
+  </div>
+</div>
+
+<footer class="bottom-0 w-full bg-gray-900 text-white py-6">
+  <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h2 class="text-2xl font-bold">LangOP</h2>
+        <p class="text-gray-400 mt-2">Building the future, one step at a time.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold">Quick Links</h3>
+        <ul class="mt-2 space-y-2 text-gray-400">
+          <li><a href="#" class="hover:text-white">Home</a></li>
+          <li><a href="{{url_for('about') }}" class="hover:text-white">About</a></li>
+          <li><a href="#Features" class="hover:text-white">Features</a></li>
+          <li><a href="#" class="hover:text-white">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold">Follow Us</h3>
+        <div class="mt-2 flex space-x-4">
+          <a href="#" class="hover:text-blue-400"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="hover:text-blue-300"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="hover:text-red-400"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="hover:text-blue-600"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-700 my-4"></div>
+
+    <div class="text-center text-gray-400">
+      <p>&copy; 2025 LangOP. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+<script>
+  document.getElementById('speak-button').addEventListener('click', function() {
+    const text = document.getElementById('text-input').value;
+    if (text !== '') {
+        const speech = new SpeechSynthesisUtterance(text);
+        speechSynthesis.speak(speech);
+    } else {
+        alert('Please enter some text.');
+    }
+});
+
+</script>
+</body>
+</html>
+
+
